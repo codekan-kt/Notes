@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.sqlDelight)
+
 }
 
 kotlin {
@@ -25,11 +27,17 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            //put your multiplatform dependencies here
+            implementation(libs.sql.delight.common)
         }
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
+
+        androidMain.dependencies {
+            implementation(libs.sql.delight.android)
         }
+
+        iosMain.dependencies {
+            implementation(libs.sql.delight.ios)
+        }
+
     }
 }
 
@@ -42,5 +50,13 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+sqldelight{
+    databases {
+        create("NotesDatabase") {
+            packageName.set("com.codekan.notes.database")
+        }
     }
 }
