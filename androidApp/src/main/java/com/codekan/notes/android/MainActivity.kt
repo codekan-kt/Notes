@@ -17,6 +17,10 @@ import com.codekan.notes.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.androidx.compose.getViewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.codekan.notes.android.notesedit.NoteEditScreen
 
 class MainActivity : ComponentActivity() {
 
@@ -32,9 +36,27 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    NotesScreen()
+                    NotesApp()
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun NotesApp() {
+    val navController = rememberNavController()
+
+    NavHost(navController = navController, startDestination = "notes_list") {
+        composable("notes_list") {
+            NotesScreen(navController)
+        }
+        composable("note_edit/{noteId}") { backStackEntry ->
+            val noteId = backStackEntry.arguments?.getString("noteId")?.toLongOrNull()
+            NoteEditScreen(noteId, navController)
+        }
+        composable("note_edit") {
+            NoteEditScreen(null, navController)
         }
     }
 }

@@ -27,6 +27,7 @@ class NoteRepository(private val driverFactory: DatabaseDriverFactory) {
 
     fun addNote(title: String, content: String) {
         db.notesQueries.insertNote(title, content)
+        updateNotes()
     }
 
     private fun updateNotes() {
