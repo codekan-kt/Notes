@@ -28,14 +28,18 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.sql.delight.common)
+            implementation(libs.sql.delight.coroutines)
+            implementation(libs.koin.core)
         }
 
         androidMain.dependencies {
             implementation(libs.sql.delight.android)
+            implementation(libs.koin.android)
         }
 
         iosMain.dependencies {
             implementation(libs.sql.delight.ios)
+            implementation(libs.koin.core)
         }
 
     }
@@ -43,7 +47,7 @@ kotlin {
 
 android {
     namespace = "com.codekan.notes"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         minSdk = 24
     }
