@@ -9,20 +9,23 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import org.koin.androidx.compose.getViewModel
+import com.codekan.notes.presentation.NotesViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NotesScreen(navController: NavController) {
-    val viewModel: NotesViewModel = getViewModel()
+fun NotesScreen(navController: NavController, viewModel: NotesViewModel) {
     val notes by viewModel.notes.collectAsState()
-
+    LaunchedEffect(key1 = Unit) {
+        viewModel.loadNotes()
+    }
     Scaffold(
         topBar = {
             TopAppBar(

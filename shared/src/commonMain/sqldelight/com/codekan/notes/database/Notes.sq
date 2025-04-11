@@ -12,3 +12,6 @@ SELECT * FROM Notes;
 
 deleteNote:
 DELETE FROM Notes WHERE id = ?;
+
+updateNote:
+UPDATE Notes SET title = ?, content = ? WHERE id = ?;

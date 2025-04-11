@@ -21,9 +21,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.codekan.notes.database.Notes
+import com.codekan.notes.domain.entity.Note
 
 @Composable
-fun NoteItem(note: Notes, onClick: () -> Unit,noteCount : Int ,modifier: Modifier = Modifier) {
+fun NoteItem(note: Note, onClick: () -> Unit, noteCount : Int, modifier: Modifier = Modifier) {
     val color = when (noteCount.toLong() % 4) { // Colour codding on notes
         0L -> Color(0xFFFFF9C4) // Yellow
         1L -> Color(0xFFB3E5FC) // Blue

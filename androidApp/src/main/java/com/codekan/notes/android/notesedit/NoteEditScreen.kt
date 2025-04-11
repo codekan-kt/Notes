@@ -12,13 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.codekan.notes.android.notes.NotesViewModel
-import org.koin.androidx.compose.getViewModel
+import com.codekan.notes.domain.entity.Note
+import com.codekan.notes.presentation.NotesViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NoteEditScreen(noteId: Long?, navController: NavController) {
-    val viewModel: NotesViewModel = getViewModel()
+fun NoteEditScreen(noteId: Long?, navController: NavController, viewModel: NotesViewModel) {
     val notes by viewModel.notes.collectAsState()
     val note = notes.find { it.id == noteId }
 
@@ -82,9 +82,10 @@ fun NoteEditScreen(noteId: Long?, navController: NavController) {
                 onClick = {
                     if (title.isNotBlank() && content.isNotBlank()) {
                         if (noteId != null) {
-                            viewModel.deleteNote(noteId) // Delete old note
+                            viewModel.updateNote(Note(noteId,title,content)) // Delete old note
+                        } else {
+                            viewModel.addNote(Note(0L,title,content)) // Add note
                         }
-                        viewModel.addNote(title, content) // Add note
                         navController.popBackStack()
                     }
                 },

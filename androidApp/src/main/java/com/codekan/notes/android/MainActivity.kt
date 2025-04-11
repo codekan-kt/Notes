@@ -3,33 +3,27 @@ package com.codekan.notes.android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.codekan.notes.android.di.androidModule
 import com.codekan.notes.android.notes.NotesScreen
-import com.codekan.notes.android.notes.NotesViewModel
 import com.codekan.notes.data.DatabaseDriverFactory
-import com.codekan.notes.di.appModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
-import org.koin.androidx.compose.getViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.codekan.notes.android.notesedit.NoteEditScreen
+import com.codekan.notes.di.KoinInitializer
+import com.codekan.notes.presentation.NotesViewModel
+import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startKoin {
-            androidContext(this@MainActivity)
-            modules(appModule(DatabaseDriverFactory(this@MainActivity)), androidModule())
-        }
+        val driverFactory = DatabaseDriverFactory(this)
+        KoinInitializer(driverFactory).initKoin()
         setContent {
             MyApplicationTheme {
                 Surface(
@@ -46,17 +40,17 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun NotesApp() {
     val navController = rememberNavController()
-
+    val viewModel: NotesViewModel = koinViewModel()
     NavHost(navController = navController, startDestination = "notes_list") {
         composable("notes_list") {
-            NotesScreen(navController)
+            NotesScreen(navController, viewModel)
         }
         composable("note_edit/{noteId}") { backStackEntry ->
             val noteId = backStackEntry.arguments?.getString("noteId")?.toLongOrNull()
-            NoteEditScreen(noteId, navController)
+            NoteEditScreen(noteId, navController,viewModel)
         }
         composable("note_edit") {
-            NoteEditScreen(null, navController)
+            NoteEditScreen(null, navController,viewModel)
         }
     }
 }
@@ -65,6 +59,6 @@ fun NotesApp() {
 @Composable
 fun DefaultPreview() {
     MyApplicationTheme {
-
+        NotesApp()
     }
 }
