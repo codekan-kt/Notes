@@ -22,7 +22,9 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Initialize Koin with the database driver factory
         val driverFactory = DatabaseDriverFactory(this)
+        // KoinInitializer hosted in commonModule is used to initialize Koin.
         KoinInitializer(driverFactory).initKoin()
         setContent {
             MyApplicationTheme {
@@ -37,9 +39,15 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+/**
+ * A composable function that hosted all the application and navigation logic.
+ */
 @Composable
 fun NotesApp() {
     val navController = rememberNavController()
+    // Init made in MainActivity is used to create viewmodel.
+    // koinViewModel() is used to create viewmodel instance.
+    // It is used to inject the viewmodel into the composable function.
     val viewModel: NotesViewModel = koinViewModel()
     NavHost(navController = navController, startDestination = "notes_list") {
         composable("notes_list") {

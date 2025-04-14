@@ -13,6 +13,10 @@ import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.dsl.module
+// This is a Koin initializer for the shared module. It initializes Koin and provides the necessary dependencies.
+// Koin is a lightweight dependency injection framework for Kotlin.
+// It allows you to manage dependencies in a clean and efficient way.
+// This file is part of the shared module, which contains use-case injections and view-model injections.
 
 class KoinInitializer(
     private val driverFactory: DatabaseDriverFactory
@@ -35,6 +39,9 @@ class KoinInitializer(
     val koin: KoinApplication
         get() = koinApp ?: throw IllegalStateException("Koin has not been initialized. Call initKoin() first.")
 
+    // This is the Koin module that provides the use-cases and view-models for the app.
+    // It defines the dependencies and how they are created.
+    // This blocks works both on androidApp and iosApp targets.
     private fun appModule() = module {
         single<NoteRepository> { NoteRepositoryImpl(driverFactory) }
         single { AddNoteUseCase(get()) }

@@ -19,11 +19,20 @@ import androidx.navigation.NavController
 import com.codekan.notes.presentation.NotesViewModel
 import org.koin.androidx.compose.koinViewModel
 
+/**
+ * A composable function that displays the notes screen.
+ * It shows a list of notes and allows the user to add a new note.
+ *
+ * @param navController The navigation controller for navigating between screens.
+ * @param viewModel The view model for managing the notes data.
+ *
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NotesScreen(navController: NavController, viewModel: NotesViewModel) {
     val notes by viewModel.notes.collectAsState()
     LaunchedEffect(key1 = Unit) {
+        // Loads notes when the screen is first displayed.
         viewModel.loadNotes()
     }
     Scaffold(

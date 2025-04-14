@@ -23,6 +23,14 @@ import androidx.compose.ui.unit.dp
 import com.codekan.notes.database.Notes
 import com.codekan.notes.domain.entity.Note
 
+/**
+ * A composable function that displays a single note item.
+ *
+ * @param note The note to be displayed.
+ * @param onClick The callback to be invoked when the note is clicked.
+ * @param noteCount The number of notes in the list.
+ * @param modifier Optional [Modifier] for styling.
+ */
 @Composable
 fun NoteItem(note: Note, onClick: () -> Unit, noteCount : Int, modifier: Modifier = Modifier) {
     val color = when (noteCount.toLong() % 4) { // Colour codding on notes

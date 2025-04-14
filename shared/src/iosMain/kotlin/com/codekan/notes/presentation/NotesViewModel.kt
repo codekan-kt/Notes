@@ -9,16 +9,22 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-
+// This is the define of the NotesViewModel in the commonMain codebase suitable for the iOS platform.
 actual class NotesViewModel actual constructor(
     private val noteUseCases: NoteUseCases
 ) {
+    // Creating scope suitable with iOS platform.
     private val scope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     private val _notes = MutableStateFlow<List<Note>>(emptyList())
     actual val notes: StateFlow<List<Note>> = _notes.asStateFlow()
-
+    // StateFlow is used to hold the list of notes and emit updates to the UI.
+    // "Skei" library automatically converts flow to AsyncSequence
+    // With AsyncSequence Reactive streams established.
     init {
-        loadNotes()
+        scope.launch {
+            loadNotes()
+        }
+
     }
 
     actual fun loadNotes() {

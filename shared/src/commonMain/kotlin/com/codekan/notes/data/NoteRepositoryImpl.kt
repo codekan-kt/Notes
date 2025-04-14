@@ -8,7 +8,11 @@ import com.codekan.notes.domain.repository.NoteRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-
+// Kotlin Multiplatform Mobile (KMM) allows you to share code between Android and iOS.
+// This code is part of the shared module, which contains the business logic and data layer.
+// This file contains the implementation of the NoteRepository interface, which is responsible for managing notes in the database.
+// The implementation uses SQLDelight to interact with the SQLite database.
+// Check sqldelight package for SQL Queries.
 class NoteRepositoryImpl(
     driverFactory: DatabaseDriverFactory
 ) : NoteRepository {
