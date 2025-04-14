@@ -5,7 +5,9 @@
 **CodeKan Notes** is a modern note-taking app built with **Kotlin Multiplatform (KMP)**, delivering native performance on both Android and iOS from a single codebase. With vibrant, color-coded notes, a sleek empty-state UI, and a reactive architecture, this project showcases the power of KMP to create cross-platform apps without compromise. Packed with clean code, detailed comments, and hard-earned lessons from real-world challenges, it’s a testament to what’s possible when you push the boundaries of modern mobile development. 🚀
 
 ## 🎥 Demo Video
-See CodeKan Notes in action on Android and iOS! Watch the [demo video](screenshots/demo.mp4) to explore the colorful note cards, smooth navigation, and seamless note management.
+| Android | iOS |
+|---------|-----|
+| ![Android](screenshots/notes-android.mp4) | ![iOS](screenshots/notes-ios.mp4) |
 
 ## ✨ Features
 - 📋 **Note Management**: Add, edit, delete, and list notes with ease.
