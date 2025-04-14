@@ -8,4 +8,8 @@ captures
 .cxx
 local.properties
 xcuserdata
+.gradle/
+*.xcworkspace
+*.xcodeproj
+Pods/
 /.kotlin/sessions/kotlin-compiler-2951988843799058750.salive

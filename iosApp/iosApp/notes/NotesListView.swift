@@ -39,23 +39,17 @@ struct NotesListView: View {
             .sheet(isPresented: $showingAddNoteSheet) {
                 NoteDetailView(viewModel: viewModel, note: nil)
             }
-            .onAppear {
-                observeNotes()
+            .task {
+                do {
+                    for try await notesList in viewModel.notes {
+                        notes = notesList
+                    }
+                } catch {
+                    print("Error observing notes: \(error)")
+                }
                 viewModel.loadNotes()
             }
-            .onDisappear {
-            }
         }
-    }
-
-    private func observeNotes() {
-        cancellable = viewModel.notes.collect(collector: FlowCollector { value in
-            if let notesList = value as? [Note] {
-                DispatchQueue.main.async {
-                    self.notes = notesList
-                }
-            }
-        })
     }
 
     private func deleteNotes(at offsets: IndexSet) {
@@ -63,15 +57,5 @@ struct NotesListView: View {
             let note = notes[index]
             viewModel.deleteNote(id: note.id)
         }
-    }
-}
-
-// FlowCollector'ı uygulamak için bir yardımcı struct
-private struct FlowCollector: Kotlinx_coroutines_coreFlowCollector {
-    let emit: (Any?) -> Void
-
-    func emit(value: Any?, completionHandler: @escaping (Error?) -> Void) {
-        emit(value)
-        completionHandler(nil) // Hata yoksa nil döner
     }
 }

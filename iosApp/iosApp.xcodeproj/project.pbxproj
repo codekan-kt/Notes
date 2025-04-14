@@ -366,6 +366,7 @@
 					"$(inherited)",
 					"-framework",
 					shared,
+					"-lsqlite3",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.codekan.notes.iosApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -398,6 +399,7 @@
 					"$(inherited)",
 					"-framework",
 					shared,
+					"-lsqlite3",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.codekan.notes.iosApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

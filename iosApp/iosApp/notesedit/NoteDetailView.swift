@@ -1,14 +1,6 @@
-//
-//  NoteDetailView.swift
-//  iosApp
-//
-//  Created by Efekan YILMAZ on 5.04.2025.
-//  Copyright © 2025 orgName. All rights reserved.
-//
-
-
 import SwiftUI
 import shared
+
 struct NoteDetailView: View {
     private let viewModel: NotesViewModel
     @Environment(\.dismiss) var dismiss

@@ -1,3 +1,5 @@
+import co.touchlab.skie.configuration.FlowInterop
+import co.touchlab.skie.configuration.SuspendInterop
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
@@ -5,7 +7,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.sqlDelight)
     alias(libs.plugins.kotlinSerialization)
-
+    alias(libs.plugins.skie)
 
 }
 
@@ -79,6 +81,16 @@ sqldelight{
     databases {
         create("NotesDatabase") {
             packageName.set("com.codekan.notes.database")
+        }
+    }
+    linkSqlite = true
+}
+
+skie {
+    features {
+        group {
+            FlowInterop.Enabled(true) // Sadece Flow desteğini etkinleştir
+            SuspendInterop.Enabled(false) // Gerekirse suspend desteği
         }
     }
 }
