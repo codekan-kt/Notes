@@ -29,6 +29,7 @@ kotlin {
         it.binaries.framework {
             baseName = "shared"
             isStatic = true
+            binaryOption("bundleId", "com.codekan.notes.shared") // Bundle ID for the iOS framework
         }
     }
 
