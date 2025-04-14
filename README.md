@@ -80,8 +80,8 @@ The app follows a clean, modular architecture:
 
 ## 📫 Get in Touch
 I’m passionate about building cross-platform apps with KMP, and I’m open to freelance opportunities! Whether you need a mobile app, technical consultation, or a KMP mentor, let’s talk:
-- **GitHub:** codekan-kt
-- **LinkedIn:** [your-linkedin](https://www.linkedin.com/in/efekanyilmaz/)
+- **GitHub:** [Codekan-Kt](https://github.com/codekan-kt)
+- **LinkedIn:** [Efekan YILMAZ](https://www.linkedin.com/in/efekanyilmaz/)
 - **Email:** efekanyilmaz.kt@gmail.com
 
 ## 🌈 Contribute
