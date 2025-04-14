@@ -31,9 +31,9 @@ See CodeKan Notes in action on Android and iOS! Watch the [demo video](screensho
 - **Gradle**: 8.5.2
 
 ### Installation
-1. **Clone the repository**:
-2. **Gradle Build Project**;
-3. **Assemble XCFramework**;
+1. **Clone the repository**
+2. **Gradle Build Project**
+3. **Assemble XCFramework**\
    Run script :shared:assembleXCFramework
 4. **Run androidApp on Android Emulator**
 5. **Run iosApp on iOS Simulator**
