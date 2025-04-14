@@ -7,7 +7,7 @@
 ## 🎥 Demo Video
 | Android | iOS |
 |---------|-----|
-| ![Android](screenshots/notes-android.mp4) | ![iOS](screenshots/notes-ios.mp4) |
+| ![Android](https://github.com/user-attachments/assets/ccdec7e5-1c72-45bd-8381-b5036d99b42d) | ![iOS](https://github.com/user-attachments/assets/06e4f767-d815-4a15-8628-22e7b874047e) |
 
 ## ✨ Features
 - 📋 **Note Management**: Add, edit, delete, and list notes with ease.
